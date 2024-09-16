@@ -24,7 +24,7 @@ import androidx.room.Room
 import kotlinx.coroutines.launch
 
 @Composable
-fun ScreenUser() {
+fun ScreenUser(modifier: Modifier) {
     val context = LocalContext.current
     var db: UserDatabase
     var id        by remember { mutableStateOf("") }
