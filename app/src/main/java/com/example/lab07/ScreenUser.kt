@@ -86,6 +86,20 @@ fun ScreenUser(modifier: Modifier) {
         ) {
             Text("Listar Usuarios", fontSize=16.sp)
         }
+        Button(
+            onClick = {
+                coroutineScope.launch {
+                    val lastUser = dao.getLastUser()
+                    if (lastUser != null) {
+                        dao.deleteUserById(lastUser.uid)
+                        val updatedData = getUsers(dao) // Actualizar la lista después de borrar
+                        dataUser.value = updatedData
+                    }
+                }
+            }
+        ) {
+            Text("Borrar Último Usuario", fontSize = 16.sp)
+        }
         Text(
             text = dataUser.value, fontSize = 20.sp
         )
